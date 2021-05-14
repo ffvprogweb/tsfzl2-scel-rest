@@ -1,3 +1,4 @@
+
 package com.fatec.scel.model;
 
 import javax.persistence.Column;
@@ -32,7 +33,6 @@ public class Livro {
 	}
 	
 	public Livro() {
-
 	}
 
 	public Long getId() {
@@ -110,10 +110,7 @@ public class Livro {
 		return true;
 	}
 	
-
-
-		
-	}
-
+	
 
 }
+
