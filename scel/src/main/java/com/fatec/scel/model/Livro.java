@@ -32,6 +32,7 @@ public class Livro {
 	}
 	
 	public Livro() {
+
 	}
 
 	public Long getId() {
@@ -109,6 +110,10 @@ public class Livro {
 		return true;
 	}
 	
-	
+
+
+		
+	}
+
 
 }
