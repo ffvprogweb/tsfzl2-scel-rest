@@ -1,3 +1,4 @@
+
 package com.fatec.scel.model;
 
 import java.util.List;
@@ -13,3 +14,4 @@ public interface LivroRepository extends CrudRepository <Livro, Long>{
 	List<Livro> findAllByTituloIgnoreCaseContaining(String titulo);
 	
 }
+

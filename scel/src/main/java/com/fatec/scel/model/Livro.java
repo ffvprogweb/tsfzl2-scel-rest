@@ -1,3 +1,4 @@
+
 package com.fatec.scel.model;
 
 import javax.persistence.Column;
@@ -112,3 +113,4 @@ public class Livro {
 	
 
 }
+
