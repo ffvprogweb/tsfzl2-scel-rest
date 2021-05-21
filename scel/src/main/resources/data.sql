@@ -1,1 +1,0 @@
-insert into livro values (1,'Delamaro','1111', 'Teste de Software')

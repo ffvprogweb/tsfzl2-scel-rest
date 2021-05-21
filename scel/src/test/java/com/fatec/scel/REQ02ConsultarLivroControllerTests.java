@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -87,5 +88,16 @@ class REQ02ConsultarLivroControllerTests {
 		assertEquals("200 OK", resposta.getStatusCode().toString());
 	}
 
+	@Test
+	public void ct04_quando_consulta_isbn_nao_cadastrado_retorna_not_found() throws Exception {
+		// Dado - que existem dois registros no banco de dados
+		// Quando - o usuario consulta isbn nao cadastrado
+		String isbn = "3333";
+		ResponseEntity<Livro> resposta = testRestTemplate.getForEntity("/api/v1/livros/" + isbn, Livro.class);
+		Optional<Livro> ro = Optional.ofNullable(resposta.getBody());
+		// Entao - retorna not found
+		assertFalse(ro.isPresent());
+		assertEquals("404 NOT_FOUND", resposta.getStatusCode().toString());
+	}
 
 }
