@@ -109,5 +109,11 @@ public class Livro {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + "]";
+	}
+	
 }
 

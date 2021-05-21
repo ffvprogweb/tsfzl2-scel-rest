@@ -24,22 +24,9 @@ class REQ02ConsultarLivroControllerTests {
 	@Autowired
 	LivroRepository repository;
 
-	public void inicializa() {
-		Livro livro = new Livro("1111", "Teste de Software", "Delamaro");
-		repository.save(livro);
-		livro = new Livro("2222", "Engenharia de Software", "Pressman");
-		repository.save(livro);
-		ArrayList<Livro> lista = new ArrayList<Livro>();
-		List<Livro> livros = repository.findAll();
-		livros.forEach(umLivro -> {
-			lista.add(umLivro);
-		});
-	}
-
 	@Test
 	void ct01_quando_cosulta_todos_retorna2() {
 		// Dado - que existem 2 registros cadastrados
-		inicializa();
 		// Quando - solicita uma requisicao get consulta todos
 		ParameterizedTypeReference<List<Livro>> tipoRetorno = new ParameterizedTypeReference<List<Livro>>() {
 		};
@@ -48,6 +35,27 @@ class REQ02ConsultarLivroControllerTests {
 		List<Livro> lista = resposta.getBody();
 		// Entao - retorna 2
 		assertEquals(2, lista.size());
+		// validacao do estado
+		Livro re = new Livro("1111", "Teste de Software", "Delamaro");
+		re.setId(1L); // id deve ser inicializado no teste
+		Livro ro = resposta.getBody().get(0);
+		assertEquals(re.getId(), ro.getId());
+		assertTrue(re.equals(ro));
+
+	}
+	@Test
+	public void ct02_quando_consulta_pelo_id_retorna_os_detalhes_do_livro() throws Exception {
+		// Dado - que existem dois registros no banco de dados
+		// Quando - o usuario consulta pelo id
+		Long id = 1L;
+		ResponseEntity<Livro> resposta = testRestTemplate.getForEntity("/api/v1/livro/" + id, Livro.class);
+		Livro ro = resposta.getBody();
+		// Entao - retorna os detalhes do livro
+		Livro re = new Livro("1111", "Teste de Software", "Delamaro");
+		re.setId(1L); // id deve ser inicializado no teste
+		assertEquals (re.getId(),ro.getId());
+		assertTrue(re.equals(ro));
+		assertEquals("200 OK", resposta.getStatusCode().toString());
 	}
 
 }

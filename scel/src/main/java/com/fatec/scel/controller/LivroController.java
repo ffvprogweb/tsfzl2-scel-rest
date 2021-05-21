@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class LivroController {
 			logger.info(">>>>>> 1. controller chamou servico save - erro detectado no bean");
 			return new ResponseEntity<>(result.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
 		}else {
-			logger.info(">>>>>> 1. controller chamou servico save sem erro no bena validation");
+			logger.info(">>>>>> 1. controller chamou servico save sem erro no bean validation");
 			return servico.save(livro);
 		}
 	}
@@ -41,5 +42,9 @@ public class LivroController {
 		return servico.consultaTodos();
 		
 	}
-
+	@GetMapping("v1/livro/{id}")
+	public ResponseEntity<Livro> findById(@PathVariable long id) {
+		logger.info(">>>>>> 1. controller chamou servico consulta por id => " + id );
+		return servico.consultaPorId(id);
+	}
 }
