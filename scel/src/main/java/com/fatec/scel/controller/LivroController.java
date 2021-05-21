@@ -1,5 +1,7 @@
 package com.fatec.scel.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +35,11 @@ public class LivroController {
 			logger.info(">>>>>> 1. controller chamou servico save sem erro no bena validation");
 			return servico.save(livro);
 		}
+	}
+	@GetMapping("/v1/livros")
+	public ResponseEntity<List<Livro>> consultaTodos(){
+		return servico.consultaTodos();
+		
 	}
 
 }

@@ -19,8 +19,8 @@ public class LivroServicoI implements LivroServico{
 	LivroRepository repository;
 	@Override
 	public ResponseEntity<List<Livro>> consultaTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Livro> livros = repository.findAll();
+		return ResponseEntity.ok().body(livros);
 	}
 
 	@Override
