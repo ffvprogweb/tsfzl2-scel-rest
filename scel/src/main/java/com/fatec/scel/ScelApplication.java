@@ -17,17 +17,5 @@ public class ScelApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ScelApplication.class, args);
 	}
-	@Bean
-	CommandLineRunner init(LivroRepository repository) {
-		return args -> {
-			Livro livro = new Livro("1111","Teste de Software", "Delamaro");
-			repository.save(livro);
-			livro = new Livro("2222", "Desenvolvimento de Software", "Pilone");
-			repository.save(livro);
-			List<Livro> livros = repository.findAll();
-			livros.forEach(umLivro -> {
-				System.out.println(umLivro.toString());
-			});
-		};
-	}
+	
 }

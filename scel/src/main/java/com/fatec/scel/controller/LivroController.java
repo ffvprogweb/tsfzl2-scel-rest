@@ -47,4 +47,9 @@ public class LivroController {
 		logger.info(">>>>>> 1. controller chamou servico consulta por id => " + id );
 		return servico.consultaPorId(id);
 	}
+	@GetMapping("v1/livros/{isbn}")
+	public ResponseEntity<Livro> findByIsbn(@PathVariable String isbn) {
+		logger.info(">>>>>> 1. controller chamou servico consulta por isbn => " + isbn );
+		return servico.consultaPorIsbn(isbn);
+	}
 }

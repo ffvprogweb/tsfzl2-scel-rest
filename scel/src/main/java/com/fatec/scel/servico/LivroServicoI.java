@@ -44,14 +44,20 @@ public class LivroServicoI implements LivroServico{
 
 	@Override
 	public ResponseEntity<Livro> consultaPorIsbn(String isbn) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseEntity<Livro> response;
+		logger.info(">>>>>> 2. servico consulta por id chamado");
+		Livro livro = repository.findByIsbn(isbn);
+		if (livro !=null)
+			response = ResponseEntity.ok().body(livro);
+		else
+			response= ResponseEntity.notFound().build();
+		return response;
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		logger.info(">>>>>> 2. servico delete por id chamado");
+		repository.deleteById(id);
 	}
 
 

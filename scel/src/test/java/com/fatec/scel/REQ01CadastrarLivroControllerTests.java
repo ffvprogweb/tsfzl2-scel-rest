@@ -31,6 +31,7 @@ class REQ01CadastrarLivroControllerTests {
 		ResponseEntity<String> resposta = testRestTemplate.exchange("/api/v1/livro", HttpMethod.POST, httpEntity, String.class);
 		//Entao - retorna HTTP200
 		assertEquals("201 CREATED", resposta.getStatusCode().toString());
+		repository.deleteAll();
 	}
 	@Test
 	public void ct02_quando_metodo_http_nao_disponivel_retorna_http_405() throws Exception{
@@ -63,6 +64,7 @@ class REQ01CadastrarLivroControllerTests {
 		//Entao - retorna HTTP400
 		assertEquals("400 BAD_REQUEST", resposta.getStatusCode().toString());
 		assertEquals("Cliente já cadastrado",resposta.getBody());
+		repository.deleteAll();
 	}
 	
 }
