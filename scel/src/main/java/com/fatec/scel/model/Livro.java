@@ -1,3 +1,5 @@
+
+
 package com.fatec.scel.model;
 
 import javax.persistence.Column;
@@ -10,50 +12,62 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Livro {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	@Size(min=4, max=4, message = "ISBN deve ter 4 caracteres")
-	@Column(unique=true) //valida no db
+	@Size(min=4, max=4, message="ISBN deve ter 4 caracteres")
+	@Column(unique=true)
 	String isbn;
 	@NotNull
-	@Size (min=1, max=50, message = "Titulo deve ter entre 1 e 50 caracteres")
+	@Size(min=1, max=50, message="Titulo deve ter entre 1 e 50 caracteres. ")
 	String titulo;
 	@NotNull
-	@Size (min=1, max=50, message = "Autor deve ter entre 1 e 50 caracteres")
+	@Size(min=1, max=50, message="Autor deve ter entre 1 e 50 caracteres. ")
 	String autor;
-	public Livro(String isbn, String titulo, String autor) {
-		this.isbn = isbn;
-		this.titulo = titulo;
-		this.autor = autor;
+	
+	public Livro (String isbn, String titulo, String autor) {
+		this.isbn=isbn;
+		this.titulo=titulo;
+		this.autor=autor;
 	}
+	
 	public Livro() {
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getIsbn() {
 		return isbn;
 	}
+
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	public String getAutor() {
 		return autor;
 	}
+
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +78,7 @@ public class Livro {
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -95,5 +110,11 @@ public class Livro {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + "]";
+	}
 	
 }
+
